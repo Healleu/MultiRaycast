@@ -3,7 +3,7 @@ extends EditorPlugin
 
 var _http : HTTPRequest = null
 var _version : String = ""
-var _url : String = "https://raw.githubusercontent.com/Healleu/MultiRayCast/main/addons/MultiRayCast/plugin.cfg"
+var _url : String = "https://raw.githubusercontent.com/Healleu/MultiRaycast/main/addons/MultiRaycast/plugin.cfg"
 
 func _enter_tree() -> void :
 	# Het plugin current version
@@ -39,7 +39,7 @@ func _on_http_request_request_completed(result : int, response_code : int, heade
 				print("New version of MultiRaycast is available!")
 				print("actual : " + _version + " / lastest : " + newest_version)
 				_http.call_deferred("queue_free")
-				return
+			return
 				
 	print("Fail to get the lastest version of MultiRaycast")
 	_http.call_deferred("queue_free")
