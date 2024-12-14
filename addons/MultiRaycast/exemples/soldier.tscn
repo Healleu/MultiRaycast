@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://lm8awp5l2i2r"]
+
+[ext_resource type="Script" path="res://addons/MultiRaycast/exemples/soldier.gd" id="1_r43nu"]
+[ext_resource type="Texture2D" uid="uid://crjp5g8psohej" path="res://addons/MultiRaycast/exemples/assets/towerDefense_tile245.png" id="2_2oubi"]
+[ext_resource type="Script" path="res://addons/MultiRaycast/multi_raycast_2D.gd" id="3_lpe6f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_diix7"]
+radius = 13.0
+
+[node name="Soldier" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_r43nu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_diix7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2oubi")
+
+[node name="MultiRaycast2D" type="Node2D" parent="."]
+script = ExtResource("3_lpe6f")
+collide_with_areas = false
+hit_from_inside = false
+collision_mask = 6
+length = 150.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 496.0
+offset_top = 11.0
+offset_right = 651.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.909804, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Enemy on my sight !"
+
+[connection signal="colliding" from="MultiRaycast2D" to="." method="_on_multi_raycast_2d_colliding"]

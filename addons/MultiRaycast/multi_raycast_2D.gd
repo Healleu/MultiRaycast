@@ -1,6 +1,6 @@
 class_name MultiRaycast2D extends Node2D
 
-signal colliding(colliders : Array[PhysicsBody2D])
+signal colliding(state : bool, colliders : Array[PhysicsBody2D])
 
 @export var enable : bool = true
 @export var collide_with_bodies : bool = true
@@ -11,9 +11,10 @@ signal colliding(colliders : Array[PhysicsBody2D])
 @export_range(0, 360, 0.1) var angle : float = 90
 @export var length : float = 100.0
 
-
 var rays : Array[RayCast2D] = []
 var colliders : Array[PhysicsBody2D]
+
+var _state : bool = false
 
 func _ready() -> void :
 	var delta_angle : float = angle / (ray_number -1)
@@ -35,11 +36,13 @@ func _ready() -> void :
 
 func _process(delta) -> void :
 	colliders.clear()
+	_state = false
 	for ray in rays :
 		if ray.is_colliding() :
 			var collider = ray.get_collider()
 			if colliders.find(collider) == -1 :
 				colliders.append(collider)
-			if not colliders.is_empty() :
-				colliding.emit(colliders)
+			_state = true
+	
+	colliding.emit(_state, colliders)
 	return

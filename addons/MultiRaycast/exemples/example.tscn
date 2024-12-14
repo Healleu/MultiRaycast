@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs3hiu411ycqp"]
+
+[ext_resource type="PackedScene" uid="uid://lm8awp5l2i2r" path="res://addons/MultiRaycast/exemples/soldier.tscn" id="2_on5da"]
+[ext_resource type="PackedScene" uid="uid://ckxhisrnuude5" path="res://addons/MultiRaycast/exemples/enemy.tscn" id="3_kolns"]
+[ext_resource type="PackedScene" uid="uid://chiyboxmxy03g" path="res://addons/MultiRaycast/exemples/wall.tscn" id="3_qu4vt"]
+
+[node name="example" type="Node2D"]
+
+[node name="Wall1" parent="." instance=ExtResource("3_qu4vt")]
+position = Vector2(97, 206)
+
+[node name="Wall2" parent="." instance=ExtResource("3_qu4vt")]
+position = Vector2(33, 206)
+
+[node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("3_kolns")]
+position = Vector2(68, 276)
+
+[node name="Soldier" parent="." instance=ExtResource("2_on5da")]

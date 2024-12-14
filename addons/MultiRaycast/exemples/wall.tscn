@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://chiyboxmxy03g"]
+
+[ext_resource type="Texture2D" uid="uid://dwddwhhje7mvt" path="res://addons/MultiRaycast/exemples/assets/towerDefense_tile084.png" id="1_ew76b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6bxx"]
+size = Vector2(64, 64)
+
+[node name="Wall" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o6bxx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ew76b")
